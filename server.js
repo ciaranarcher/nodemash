@@ -1,14 +1,15 @@
 var Twitter = require('./tweetHoover');
-var tweetStream = new Twitter.TweetHoover('javascript').stream;
+var tweetStream = new Twitter.TweetHoover('ireland').stream;
 var app = require('http').createServer(handler);
 var io = require('socket.io').listen(app);
 var fs = require('fs');
 var _ = require('underscore');
 var sockets = [];
+var port = 80;
 
 handleSocketConnections();
 setupTwitterListeners();
-app.listen(8080);
+app.listen(port);
 
 function handler (req, res) {
   // serve up files requested
