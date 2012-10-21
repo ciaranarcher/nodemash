@@ -1,12 +1,30 @@
 var Twitter = require('./tweetHoover');
-var tweetStream = new Twitter.TweetHoover().stream
-var http = require('http');
+var tweetStream = new Twitter.TweetHoover().stream;
+var app = require('http').createServer(handler);
+var io = require('socket.io').listen(app);
 var fs = require('fs');
-var io = require('socket.io').listen(8080);
+var _ = require('underscore');
+var sockets = [];
 
-// push messaging
+app.listen(8080);
+
+function handler (req, res) {
+  fs.readFile(__dirname + '/index.html',
+  function (err, data) {
+    if (err) {
+      res.writeHead(500);
+      return res.end('Error loading index.html');
+    }
+
+    res.writeHead(200);
+    res.end(data);
+  });
+}
+
 io.sockets.on('connection', function (socket) {
-  // socket.emit('news', { hello: 'world' });
+  //console.log(socket);
+  sockets.push(socket);
+  //socket.emit('tweet', { hello: 'world' });
   // socket.on('my other event', function (data) {
   //   console.log(data);
   // });
@@ -18,9 +36,13 @@ tweetStream.addListener('response', function (response) {
   response.addListener('data', function (chunk) {
     try {
       var tweet = JSON.parse(chunk);
-      console.log(tweet.text);
+      //console.log(tweet.text);
+      _.each(sockets, function(sock) {
+        sock.emit('tweet', { text: tweet.text });
+      });
+
     } catch (e) {
-      console.log('error parsing ' + chunk);
+      //console.log('error parsing ' + chunk);
     }
     
   });
