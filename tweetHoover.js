@@ -14,7 +14,7 @@ exports.TweetHoover = function() {
     "1.0A", null, "HMAC-SHA1"
   );
 
-  this.stream = oa.get("https://stream.twitter.com/1/statuses/sample.json", 
+  this.stream = oa.get("https://stream.twitter.com/1.1/statuses/filter.json?track=ireland", 
     twitterAccessToken, twitterAccessTokenSecret
   );
 };
