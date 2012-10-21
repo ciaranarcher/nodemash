@@ -1,5 +1,8 @@
 var Twitter = require('./tweetHoover');
 var tweetStream = new Twitter.TweetHoover().stream
+var http = require('http');
+var fs = require('fs');
+var io = require('socket.io').listen(80);
 
 // add listeners
 tweetStream.addListener('response', function (response) {
@@ -13,5 +16,15 @@ tweetStream.addListener('response', function (response) {
 });
 
 // close stream
-tweetStream.end();  
+tweetStream.end();
+
+// 
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+ 
 
