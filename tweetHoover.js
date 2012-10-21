@@ -1,7 +1,7 @@
 var sys = require('sys');
 var OAuth= require('oauth').OAuth;
 
-exports.TweetHoover = function() {
+exports.TweetHoover = function(topic) {
   var twitterConsumerKey = 'xvzcpBOZTvu8KV3UHld8GA';
   var twitterConsumerSecret = '68E9KC10szq4HoVOUHjIDVeidlJpVsYqzd0XrB0mc';
   var twitterAccessToken = '44879860-8bthwiyiLyDhBMz9G0dGMkEnzb7nffWO5pdQMwdsU';
@@ -14,7 +14,7 @@ exports.TweetHoover = function() {
     "1.0A", null, "HMAC-SHA1"
   );
 
-  this.stream = oa.get("https://stream.twitter.com/1.1/statuses/filter.json?track=ireland", 
+  this.stream = oa.get("https://stream.twitter.com/1.1/statuses/filter.json?track=" + topic, 
     twitterAccessToken, twitterAccessTokenSecret
   );
 };
