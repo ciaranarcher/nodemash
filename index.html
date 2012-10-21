@@ -16,8 +16,13 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('http://localhost:8080');
+      var count = 0;
       socket.on('tweet', function (data) {
-        $("#tweets").append("<li>" + data.text + "</li>");
+
+        
+        $("#tweets").append("<li style='display:none' class='btn' id='tweet_" + count + "'>" + data.text + "</li><br />");
+        $("#tweet_" + count).slideDown("slow");
+        count++;
       });
     </script>
   </body>
