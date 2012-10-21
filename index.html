@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>Twitter using NodeJS</title>
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>I am Node. I am JavaScript. These are my tweets:</h1>
+    <ul id="tweets">
+
+    </ul>
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('http://localhost:8080');
       socket.on('tweet', function (data) {
-        console.log(data);
-        //socket.emit('my other event', { my: 'data' });
+        $("#tweets").append("<li>" + data.text + "</li>");
       });
     </script>
   </body>

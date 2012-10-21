@@ -1,5 +1,5 @@
 var Twitter = require('./tweetHoover');
-var tweetStream = new Twitter.TweetHoover('ireland').stream;
+var tweetStream = new Twitter.TweetHoover('javascript').stream;
 var app = require('http').createServer(handler);
 var io = require('socket.io').listen(app);
 var fs = require('fs');
