@@ -2,10 +2,10 @@ var sys = require('sys');
 var OAuth= require('oauth').OAuth;
 
 exports.TweetHoover = function(topic) {
-  var twitterConsumerKey = 'xvzcpBOZTvu8KV3UHld8GA';
-  var twitterConsumerSecret = '68E9KC10szq4HoVOUHjIDVeidlJpVsYqzd0XrB0mc';
-  var twitterAccessToken = '44879860-8bthwiyiLyDhBMz9G0dGMkEnzb7nffWO5pdQMwdsU';
-  var twitterAccessTokenSecret = 'DpAmBLQEzJdTovcx81f2XrzFXNyqAzcAQ2yp4EeHWk';
+  var twitterConsumerKey = '??';
+  var twitterConsumerSecret = '??';
+  var twitterAccessToken = '??';
+  var twitterAccessTokenSecret = '??';
 
   var oa = new OAuth(
     "http://twitter.com/oauth/request_token",
